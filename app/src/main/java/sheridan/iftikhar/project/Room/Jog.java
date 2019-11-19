@@ -17,7 +17,7 @@ public class Jog {
     private int jogID;
 
     @NonNull
-    private Date jogDate; //start date
+    private String jogDate; //start date
 
     @NonNull
     private int jogDuration; //in mintutes
@@ -25,7 +25,7 @@ public class Jog {
     @NonNull
     private int jogIntensity; //0 low, 1 medium, 2 high
 
-    public Jog(@NonNull Date jogDate, @NonNull int jogDuration, @NonNull int jogIntensity) {
+    public Jog(@NonNull String jogDate, @NonNull int jogDuration, @NonNull int jogIntensity) {
         this.jogDate = jogDate;
         this.jogDuration = jogDuration;
         this.jogIntensity = jogIntensity;
@@ -40,11 +40,11 @@ public class Jog {
     }
 
     @NonNull
-    public Date getJogDate() {
+    public String getJogDate() {
         return jogDate;
     }
 
-    public void setJogDate(@NonNull Date jogDate) {
+    public void setJogDate(@NonNull String jogDate) {
         this.jogDate = jogDate;
     }
 

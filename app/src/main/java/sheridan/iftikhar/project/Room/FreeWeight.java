@@ -14,7 +14,7 @@ public class FreeWeight {
     private int freeWeightID;
 
     @NonNull
-    private Date freeWeightDate; //date to do the weights
+    private String freeWeightDate; //date to do the weights
 
     @NonNull
     private int freeWeightRepitions; //how many repetions
@@ -22,18 +22,18 @@ public class FreeWeight {
     @NonNull
     private int freeWeightPounds; ///how heavy the weight is
 
-    public FreeWeight(@NonNull Date freeWeightDate, @NonNull int freeWeightRepitions, @NonNull int freeWeightPounds) {
+    public FreeWeight(@NonNull String freeWeightDate, @NonNull int freeWeightRepitions, @NonNull int freeWeightPounds) {
         this.freeWeightDate = freeWeightDate;
         this.freeWeightRepitions = freeWeightRepitions;
         this.freeWeightPounds = freeWeightPounds;
     }
 
     @NonNull
-    public Date getFreeWeightDate() {
+    public String getFreeWeightDate() {
         return freeWeightDate;
     }
 
-    public void setFreeWeightDate(@NonNull Date freeWeightDate) {
+    public void setFreeWeightDate(@NonNull String freeWeightDate) {
         this.freeWeightDate = freeWeightDate;
     }
 
@@ -51,6 +51,14 @@ public class FreeWeight {
 
     public void setFreeWeightPounds(int freeWeightPounds) {
         this.freeWeightPounds = freeWeightPounds;
+    }
+
+    public int getFreeWeightID() {
+        return freeWeightID;
+    }
+
+    public void setFreeWeightID(int freeWeightID) {
+        this.freeWeightID = freeWeightID;
     }
 
 }
