@@ -53,9 +53,9 @@ public class JogListAdapter extends RecyclerView.Adapter<JogListAdapter.JogListV
     public void onBindViewHolder(@NonNull JogListAdapter.JogListViewHolder holder, int position) {
         if(mJogs != null){
             Jog current = mJogs.get(position);
-            holder.tvIntensity.setText(current.getJogIntensity()); //convert to string if error?
-            holder.tvDate.setText(current.getJogDate().toString()); //convert to string if error?
-            holder.tvDuration.setText(current.getJogDuration()); //convert to string if error?
+            holder.tvIntensity.setText(Integer.toString(current.getJogIntensity())); //convert to string if error?
+            holder.tvDate.setText(current.getJogDate()); //convert to string if error?
+            holder.tvDuration.setText(Integer.toString(current.getJogDuration())); //convert to string if error?
         }
         else{
             holder.tvIntensity.setText("No intensity set"); //convert to string if error?
