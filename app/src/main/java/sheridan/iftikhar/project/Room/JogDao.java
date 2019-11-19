@@ -21,6 +21,9 @@ public interface JogDao {
     @Update
     void update(Jog jog);
 
+    @Query("DELETE FROM jog_table")
+    void deleteAll();
+
     @Query("SELECT * FROM jog_table ORDER BY jogDate ASC")
     LiveData<List<Jog>> getJogsByDate();
 }

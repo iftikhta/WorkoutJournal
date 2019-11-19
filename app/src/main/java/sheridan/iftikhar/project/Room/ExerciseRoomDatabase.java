@@ -43,7 +43,7 @@ public abstract class ExerciseRoomDatabase extends RoomDatabase {
             super.onOpen(db);
             databaseWriteExecutor.execute(() -> {
                 JogDao dao = INSTANCE.jogDao();
-                //dao.delete();
+                dao.deleteAll();
                 Jog jog = new Jog("September first", 5,2);
                 dao.insert(jog);
                 jog = new Jog("October", 2,1);
