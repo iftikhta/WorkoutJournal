@@ -13,8 +13,8 @@ public class ExerciseViewModel extends AndroidViewModel {
     private ExerciseRepository mRepository;
 
     //initializing all lists
-    private LiveData<List<FreeWeight>> mAllFreeWeights;
-    private LiveData<List<Jog>> mAllJogs;
+     LiveData<List<FreeWeight>> mAllFreeWeights;
+     LiveData<List<Jog>> mAllJogs;
 
     public ExerciseViewModel(@NonNull Application application) {
         super(application);

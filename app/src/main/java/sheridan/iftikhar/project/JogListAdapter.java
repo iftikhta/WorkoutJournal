@@ -2,6 +2,7 @@ package sheridan.iftikhar.project;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -65,7 +67,16 @@ public class JogListAdapter extends RecyclerView.Adapter<JogListAdapter.JogListV
             holder.tvDate.setText("No date set"); //convert to string if error?
             holder.tvDuration.setText("No Duration set"); //convert to string if error?
         }
-        holder.itemView.setOnClickListener(v->showJogFragment.GoEdit(holder,position));
+        holder.itemView.setOnClickListener(v->GoEdit(holder,position));
+    }
+
+     void GoEdit(JogListAdapter.JogListViewHolder holder, int position){
+        Bundle mBundle = new Bundle();
+        mBundle.putInt("p", position);
+        Navigation.findNavController(holder.itemView).navigate(R.id.action_showJogFragment_to_editJogFragment, mBundle);
+
+         //mNavController.navigate(R.id.action_showJogFragment_to_editJogFragment, mBundle);
+
     }
 
     @Override

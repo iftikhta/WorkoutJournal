@@ -32,7 +32,7 @@ public class showJogFragment extends Fragment {
 
     ExerciseViewModel mExerciseViewModel;
     Button mAddJog;
-    static NavController mNavController;
+     NavController mNavController;
     public static final int NEW_JOG_ACTIVITY_REQUEST_CODE = 1;
 
     public showJogFragment() {
@@ -54,7 +54,7 @@ public class showJogFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mExerciseViewModel =  new ExerciseViewModel((Application) getContext().getApplicationContext());
+        mExerciseViewModel = new ViewModelProvider(this.getActivity()).get(ExerciseViewModel.class);  // new ExerciseViewModel((Application) getContext().getApplicationContext());
         mExerciseViewModel.getAllJogs().observe(this, new Observer<List<Jog>>() {
             @Override
             public void onChanged(@Nullable final List<Jog> jog) {
@@ -74,10 +74,10 @@ public class showJogFragment extends Fragment {
        mAddJog.setOnClickListener(v-> mNavController.navigate(R.id.action_showJogFragment_to_editJogFragment));
     }
 
-    static void GoEdit(JogListAdapter.JogListViewHolder holder, int position){
-        Bundle mBundle = new Bundle();
-        mBundle.putInt("position", position);
-        mNavController.navigate(R.id.action_showJogFragment_to_editJogFragment,mBundle);
-
-    }
+//    static void GoEdit(JogListAdapter.JogListViewHolder holder, int position){
+//        Bundle mBundle = new Bundle();
+//        mBundle.putInt("position", position);
+//        mNavController.navigate(R.id.action_showJogFragment_to_editJogFragment, mBundle);
+//
+//    }
 }

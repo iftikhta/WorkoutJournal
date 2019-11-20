@@ -22,6 +22,7 @@ public class HomeFragment extends Fragment {
 
     NavController mNavController;
     Button btnJogs, btnFreeWeights;
+    Bundle mBundle = new Bundle();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -46,6 +47,6 @@ public class HomeFragment extends Fragment {
 
         mNavController = Navigation.findNavController(view);
 
-        btnJogs.setOnClickListener(v-> mNavController.navigate(R.id.action_homeFragment_to_showJogFragment));
+        btnJogs.setOnClickListener(v-> mNavController.navigate(R.id.action_homeFragment_to_showJogFragment, mBundle));
     }
 }

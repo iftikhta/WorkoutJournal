@@ -18,7 +18,11 @@
         android:id="@+id/editJogFragment"
         android:name="sheridan.iftikhar.project.editJogFragment"
         android:label="fragment_edit_jog"
-        tools:layout="@layout/fragment_edit_jog" />
+        tools:layout="@layout/fragment_edit_jog" >
+        <action
+            android:id="@+id/action_editJogFragment_to_showJogFragment"
+            app:destination="@id/showJogFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="sheridan.iftikhar.project.HomeFragment"
