@@ -1,11 +1,13 @@
 package sheridan.iftikhar.project;
 
+import android.app.Application;
 import android.content.Context;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +48,7 @@ public class JogListAdapter extends RecyclerView.Adapter<JogListAdapter.JogListV
     @Override
     public JogListAdapter.JogListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.jog_item, parent, false);
+        //itemView.setOnClickListener(V->GoEdit());
         return new JogListAdapter.JogListViewHolder(itemView);
     }
 
@@ -62,6 +65,7 @@ public class JogListAdapter extends RecyclerView.Adapter<JogListAdapter.JogListV
             holder.tvDate.setText("No date set"); //convert to string if error?
             holder.tvDuration.setText("No Duration set"); //convert to string if error?
         }
+        holder.itemView.setOnClickListener(v->showJogFragment.GoEdit(holder,position));
     }
 
     @Override

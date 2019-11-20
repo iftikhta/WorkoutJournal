@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_control"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/showJogFragment"
+        android:name="sheridan.iftikhar.project.showJogFragment"
+        android:label="fragment_show_jog"
+        tools:layout="@layout/fragment_show_jog" >
+        <action
+            android:id="@+id/action_showJogFragment_to_editJogFragment"
+            app:destination="@id/editJogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editJogFragment"
+        android:name="sheridan.iftikhar.project.editJogFragment"
+        android:label="fragment_edit_jog"
+        tools:layout="@layout/fragment_edit_jog" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="sheridan.iftikhar.project.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_showJogFragment"
+            app:destination="@id/showJogFragment" />
+    </fragment>
+</navigation>

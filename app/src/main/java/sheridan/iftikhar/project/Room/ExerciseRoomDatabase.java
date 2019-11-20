@@ -48,6 +48,14 @@ public abstract class ExerciseRoomDatabase extends RoomDatabase {
                 dao.insert(jog);
                 jog = new Jog("October", 2,1);
                 dao.insert(jog);
+                jog = new Jog("October", 2,1);
+                dao.insert(jog);
+                jog = new Jog("October", 2,1);
+                dao.insert(jog);
+                jog = new Jog("October", 2,1);
+                dao.insert(jog);
+                jog = new Jog("October", 2,1);
+                dao.insert(jog);
             });
         }
     };
