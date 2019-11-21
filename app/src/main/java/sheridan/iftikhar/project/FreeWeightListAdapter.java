@@ -72,7 +72,7 @@ public class FreeWeightListAdapter extends RecyclerView.Adapter<FreeWeightListAd
         mBundle.putInt("p", position);
 
         //reminder to update this navigation
-        Navigation.findNavController(holder.itemView).navigate(R.id.action_showJogFragment_to_editJogFragment, mBundle);
+        Navigation.findNavController(holder.itemView).navigate(R.id.action_showFreeWeightFragment_to_editFreeWeightFragment, mBundle);
 
          //mNavController.navigate(R.id.action_showJogFragment_to_editJogFragment, mBundle);
 

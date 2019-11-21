@@ -58,5 +58,16 @@
         <action
             android:id="@+id/action_showFreeWeightFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_showFreeWeightFragment_to_editFreeWeightFragment"
+            app:destination="@id/editFreeWeightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFreeWeightFragment"
+        android:name="sheridan.iftikhar.project.editFreeWeightFragment"
+        android:label="editFreeWeightFragment" >
+        <action
+            android:id="@+id/action_editFreeWeightFragment_to_showFreeWeightFragment"
+            app:destination="@id/showFreeWeightFragment" />
     </fragment>
 </navigation>
