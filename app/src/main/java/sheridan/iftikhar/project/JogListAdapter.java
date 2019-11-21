@@ -30,7 +30,6 @@ public class JogListAdapter extends RecyclerView.Adapter<JogListAdapter.JogListV
             tvDate = itemView.findViewById(R.id.tvDate);
             tvDuration = itemView.findViewById(R.id.tvDuration);
             tvIntensity= itemView.findViewById(R.id.tvIntensity);
-
         }
     }
 

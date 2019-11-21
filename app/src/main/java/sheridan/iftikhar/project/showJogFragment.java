@@ -32,7 +32,7 @@ public class showJogFragment extends Fragment {
 
     ExerciseViewModel mExerciseViewModel;
     Button mAddJog;
-     NavController mNavController;
+    NavController mNavController;
     public static final int NEW_JOG_ACTIVITY_REQUEST_CODE = 1;
 
     public showJogFragment() {
@@ -63,7 +63,14 @@ public class showJogFragment extends Fragment {
             }
         });
 
+        mAddJog.setOnClickListener(v-> goAdd());
+        //Navigation.findNavController(holder.itemView).navigate(R.id.action_showJogFragment_to_editJogFragment, mBundle);
+
         return view;
+    }
+
+    void goAdd(){
+        //Navigation.findNavController(holder.itemView).navigate(R.id.action_showJogFragment_to_editJogFragment, mBundle);
     }
 
     @Override
@@ -71,13 +78,6 @@ public class showJogFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mNavController = Navigation.findNavController(view);
 
-       mAddJog.setOnClickListener(v-> mNavController.navigate(R.id.action_showJogFragment_to_editJogFragment));
+       mAddJog.setOnClickListener(v-> mNavController.navigate(R.id.action_showJogFragment_to_addJogFragment));
     }
-
-//    static void GoEdit(JogListAdapter.JogListViewHolder holder, int position){
-//        Bundle mBundle = new Bundle();
-//        mBundle.putInt("position", position);
-//        mNavController.navigate(R.id.action_showJogFragment_to_editJogFragment, mBundle);
-//
-//    }
 }

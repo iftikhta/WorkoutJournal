@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_showJogFragment_to_editJogFragment"
             app:destination="@id/editJogFragment" />
+        <action
+            android:id="@+id/action_showJogFragment_to_addJogFragment"
+            app:destination="@id/addJogFragment" />
     </fragment>
     <fragment
         android:id="@+id/editJogFragment"
@@ -30,6 +33,15 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_showJogFragment"
+            app:destination="@id/showJogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addJogFragment"
+        android:name="sheridan.iftikhar.project.addJogFragment"
+        android:label="fragment_add_jog"
+        tools:layout="@layout/fragment_add_jog" >
+        <action
+            android:id="@+id/action_addJogFragment_to_showJogFragment"
             app:destination="@id/showJogFragment" />
     </fragment>
 </navigation>

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import sheridan.iftikhar.project.Room.ExerciseViewModel;
 import sheridan.iftikhar.project.Room.Jog;
@@ -49,9 +50,11 @@ public class editJogFragment extends Fragment {
 
         btnSave = view.findViewById(R.id.btnSaveJog);
         btnBack = view.findViewById(R.id.btnBackJog);
+        btnDelete = view.findViewById(R.id.btnDeleteJog);
 
         btnSave.setOnClickListener(V->SaveJog());
         btnBack.setOnClickListener(V->GoBack());
+        btnDelete.setOnClickListener(V->DeleteJog());
        // mEditDate.setText(Integer.toString(getArguments().getInt("position")));
 
         exerciseViewModel = new ViewModelProvider(this.getActivity()).get(ExerciseViewModel.class); //new ExerciseViewModel(getActivity().getApplication());//new ExerciseViewModel(getActivity().getApplication());  //new ViewModelProvider(this.getActivity().get(ExerciseViewModel.class)); //this.getActivity()).get(PetViewModel.class
@@ -80,7 +83,21 @@ public class editJogFragment extends Fragment {
     }
     private void SaveJog() {
         //ExerciseViewModel exerciseViewModel = new ExerciseViewModel(getActivity().getApplication());
+        mEditDuration.setText(mEditDuration.getText().toString().replaceAll(",", ""));
+        currJog.setJogDate(mEditDate.getText().toString());
+        currJog.setJogDuration(Integer.parseInt(mEditDuration.getText().toString()));
+        currJog.setJogIntensity(Integer.parseInt(mEditIntensity.getText().toString()));
+
         exerciseViewModel.update(currJog); //
+
+        Toast.makeText(this.getContext(), "Changes saved!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void DeleteJog(){
+        exerciseViewModel.delete(currJog);
+        GoBack();
+        Toast.makeText(this.getContext(), "Jog has been deleted", Toast.LENGTH_SHORT).show();
+
     }
 
 }
