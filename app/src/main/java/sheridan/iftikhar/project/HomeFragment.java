@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment {
 
         mNavController = Navigation.findNavController(view);
 
+        btnFreeWeights.setOnClickListener(v-> mNavController.navigate(R.id.action_homeFragment_to_showFreeWeightFragment, mBundle));
         btnJogs.setOnClickListener(v-> mNavController.navigate(R.id.action_homeFragment_to_showJogFragment, mBundle));
     }
 }

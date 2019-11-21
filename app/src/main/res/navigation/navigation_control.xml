@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_homeFragment_to_showJogFragment"
             app:destination="@id/showJogFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_showFreeWeightFragment"
+            app:destination="@id/showFreeWeightFragment" />
     </fragment>
     <fragment
         android:id="@+id/addJogFragment"
@@ -46,5 +49,14 @@
         <action
             android:id="@+id/action_addJogFragment_to_showJogFragment"
             app:destination="@id/showJogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showFreeWeightFragment"
+        android:name="sheridan.iftikhar.project.showFreeWeightFragment"
+        android:label="fragment_show_free_weight"
+        tools:layout="@layout/fragment_show_free_weight" >
+        <action
+            android:id="@+id/action_showFreeWeightFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

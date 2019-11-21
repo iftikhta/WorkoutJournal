@@ -21,6 +21,9 @@ public interface FreeWeightDao {
     @Update
     void update(FreeWeight freeWeight);
 
+    @Query("DELETE FROM freeweight_table")
+    void deleteAll();
+
     //returns a list of all freeweight exersizes organized by date but
     // changing this list doesnt do anything to database
     @Query("SELECT * from FreeWeight_Table ORDER BY freeWeightDate ASC")
