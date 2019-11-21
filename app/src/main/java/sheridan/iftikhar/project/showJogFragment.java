@@ -31,7 +31,7 @@ import sheridan.iftikhar.project.Room.Jog;
 public class showJogFragment extends Fragment {
 
     ExerciseViewModel mExerciseViewModel;
-    Button mAddJog;
+    Button mAddJog,mGoBack;
     NavController mNavController;
     public static final int NEW_JOG_ACTIVITY_REQUEST_CODE = 1;
 
@@ -47,6 +47,7 @@ public class showJogFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_show_jog, container, false);
         mAddJog = view.findViewById(R.id.btnAddJog);
+        mGoBack = view.findViewById(R.id.btnBack);
 
 
         RecyclerView recyclerView = view.findViewById(R.id.jogList);
@@ -63,14 +64,7 @@ public class showJogFragment extends Fragment {
             }
         });
 
-        mAddJog.setOnClickListener(v-> goAdd());
-        //Navigation.findNavController(holder.itemView).navigate(R.id.action_showJogFragment_to_editJogFragment, mBundle);
-
         return view;
-    }
-
-    void goAdd(){
-        //Navigation.findNavController(holder.itemView).navigate(R.id.action_showJogFragment_to_editJogFragment, mBundle);
     }
 
     @Override
@@ -78,6 +72,8 @@ public class showJogFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mNavController = Navigation.findNavController(view);
 
-       mAddJog.setOnClickListener(v-> mNavController.navigate(R.id.action_showJogFragment_to_addJogFragment));
+        mAddJog.setOnClickListener(v-> mNavController.navigate(R.id.action_showJogFragment_to_addJogFragment));
+        mGoBack.setOnClickListener(v->mNavController.navigate(R.id.action_showJogFragment_to_homeFragment));
+
     }
 }
