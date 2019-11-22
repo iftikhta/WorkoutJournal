@@ -66,7 +66,7 @@ public class showFreeWeightFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mNavController = Navigation.findNavController(view);
-        mAddFreeWeight.setOnClickListener(v->mNavController.navigate(R.id.action_showFreeWeightFragment_to_editFreeWeightFragment));
+        mAddFreeWeight.setOnClickListener(v->mNavController.navigate(R.id.action_showFreeWeightFragment_to_addFreeWeightFragment));
         mGoBack.setOnClickListener(v->mNavController.navigate(R.id.action_showFreeWeightFragment_to_homeFragment));
 
     }

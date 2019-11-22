@@ -61,6 +61,9 @@
         <action
             android:id="@+id/action_showFreeWeightFragment_to_editFreeWeightFragment"
             app:destination="@id/editFreeWeightFragment" />
+        <action
+            android:id="@+id/action_showFreeWeightFragment_to_addFreeWeightFragment"
+            app:destination="@id/addFreeWeightFragment" />
     </fragment>
     <fragment
         android:id="@+id/editFreeWeightFragment"
@@ -68,6 +71,14 @@
         android:label="editFreeWeightFragment" >
         <action
             android:id="@+id/action_editFreeWeightFragment_to_showFreeWeightFragment"
+            app:destination="@id/showFreeWeightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFreeWeightFragment"
+        android:name="sheridan.iftikhar.project.addFreeWeightFragment"
+        android:label="addFreeWeightFragment" >
+        <action
+            android:id="@+id/action_addFreeWeightFragment_to_showFreeWeightFragment"
             app:destination="@id/showFreeWeightFragment" />
     </fragment>
 </navigation>
