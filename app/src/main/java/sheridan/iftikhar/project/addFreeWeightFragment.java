@@ -1,6 +1,9 @@
 package sheridan.iftikhar.project;
 
 
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +17,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 import sheridan.iftikhar.project.Room.ExerciseViewModel;
 import sheridan.iftikhar.project.Room.FreeWeight;
@@ -28,8 +35,13 @@ public class addFreeWeightFragment extends Fragment {
 
     Button btnBack, btnAdd;
     NavController mNavController;
-    EditText edtDate, edtRepetitions, edtPounds;
+    EditText edtRepetitions, edtPounds;
+    TextView edtDate;
     ExerciseViewModel mExerciseViewModel;
+
+
+    DatePickerDialog mDatePickerDialog;
+    DatePickerDialog.OnDateSetListener mOnDateSetListener;
 
     public addFreeWeightFragment() {
         // Required empty public constructor
@@ -51,9 +63,33 @@ public class addFreeWeightFragment extends Fragment {
 
         btnAdd.setOnClickListener(v->AddFreeWeight());
         btnBack.setOnClickListener(v->GoBack());
+        edtDate.setOnClickListener(v->onClickDate());
+
+        mOnDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month +=1;
+                edtDate.setText(year+ "/" + month + "/" + day);
+            }
+        };
+
 
         mExerciseViewModel = new ViewModelProvider(this.getActivity()).get(ExerciseViewModel.class);
         return view;
+    }
+
+    void onClickDate(){
+        Calendar call = Calendar.getInstance();
+        //he did: int year cal.get(Calendar.YEAR);
+        int year = call.get(Calendar.YEAR);
+        int month = call.get(Calendar.MONTH);
+        int day = call.get(Calendar.DAY_OF_MONTH);
+
+        mDatePickerDialog = new DatePickerDialog(this.getContext(),android.R.style.Theme_Holo_Light_Dialog_MinWidth
+                ,mOnDateSetListener, year,month,day);
+
+        mDatePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mDatePickerDialog.show();
     }
 
     @Override
