@@ -1,6 +1,9 @@
 package sheridan.iftikhar.project;
 
 
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,12 +13,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 import sheridan.iftikhar.project.Room.ExerciseViewModel;
 import sheridan.iftikhar.project.Room.Jog;
@@ -26,7 +34,12 @@ import sheridan.iftikhar.project.Room.Jog;
  */
 public class addJogFragment extends Fragment {
 
-    EditText mEditDate, mEditDuration, mEditIntensity;
+    TextView mEditDate;
+
+    DatePickerDialog mDatePickerDialog;
+    DatePickerDialog.OnDateSetListener mOnDateSetListener;
+
+    EditText mEditDuration, mEditIntensity;
     NavController mNavController;
     Button btnAdd, btnBack;
     ExerciseViewModel mExerciseViewModel;
@@ -50,10 +63,33 @@ public class addJogFragment extends Fragment {
 
         btnAdd.setOnClickListener(v->AddJog());
         btnBack.setOnClickListener(v->GoBack());
+        mEditDate.setOnClickListener(v->onTvDateClick());
 
         mExerciseViewModel = new ViewModelProvider(this.getActivity()).get(ExerciseViewModel.class);
 
+        mOnDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month +=1;
+                mEditDate.setText(year+ "/" + month + "/" + day);
+            }
+        };
+
+
         return view;
+    }
+    void onTvDateClick(){
+        Calendar call = Calendar.getInstance();
+        //he did: int year cal.get(Calendar.YEAR);
+        int year = call.get(Calendar.YEAR);
+        int month = call.get(Calendar.MONTH);
+        int day = call.get(Calendar.DAY_OF_MONTH);
+
+        mDatePickerDialog = new DatePickerDialog(this.getContext(),android.R.style.Theme_Holo_Light_Dialog_MinWidth
+                ,mOnDateSetListener, year,month,day);
+
+        mDatePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mDatePickerDialog.show();
     }
 
     @Override
@@ -67,7 +103,7 @@ public class addJogFragment extends Fragment {
     }
 
     void AddJog(){
-        if(mEditDate.getText().toString().isEmpty() || mEditDate.getText().toString().matches(" +")
+        if(mEditDate.getText().toString().equals("Click to set a date") || mEditDate.getText().toString().isEmpty() || mEditDate.getText().toString().matches(" +")
         || mEditIntensity.getText().toString().isEmpty() || mEditIntensity.getText().toString().matches(" +")
         || mEditDuration.getText().toString().isEmpty() || mEditDuration.getText().toString().matches(" +")){
             Toast.makeText(this.getContext(), "Invalid input", Toast.LENGTH_SHORT).show();

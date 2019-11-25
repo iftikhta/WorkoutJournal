@@ -1,6 +1,9 @@
 package sheridan.iftikhar.project;
 
 
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +17,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 import sheridan.iftikhar.project.Room.ExerciseViewModel;
 import sheridan.iftikhar.project.Room.FreeWeight;
@@ -27,9 +34,13 @@ import sheridan.iftikhar.project.Room.FreeWeight;
 public class editFreeWeightFragment extends Fragment {
     NavController mNavController;
     Button btnBack,btnEdit, btnDelete;
-    EditText edtDate, edtRepetitions, edtPounds;
+    EditText edtRepetitions, edtPounds;
     ExerciseViewModel mExerciseViewModel;
     FreeWeight currFreeWeight;
+    TextView edtDate;
+
+    DatePickerDialog mDatePickerDialog;
+    DatePickerDialog.OnDateSetListener mOnDateSetListener;
 
     public editFreeWeightFragment() {
         // Required empty public constructor
@@ -54,13 +65,38 @@ public class editFreeWeightFragment extends Fragment {
         btnDelete.setOnClickListener(v->DeleteFreeWeight());
         btnBack.setOnClickListener(v->BackFreeWeight());
 
+        edtDate.setOnClickListener(v->onTvDateClick());
+
+        mOnDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month +=1;
+                edtDate.setText(year+ "/" + month + "/" + day);
+            }
+        };
+
+
         mExerciseViewModel = new ViewModelProvider(this.getActivity()).get(ExerciseViewModel.class);
         return view;
     }
 
+    void onTvDateClick(){
+        Calendar call = Calendar.getInstance();
+        //he did: int year cal.get(Calendar.YEAR);
+        int year = call.get(Calendar.YEAR);
+        int month = call.get(Calendar.MONTH);
+        int day = call.get(Calendar.DAY_OF_MONTH);
+
+        mDatePickerDialog = new DatePickerDialog(this.getContext(),android.R.style.Theme_Holo_Light_Dialog_MinWidth
+                ,mOnDateSetListener, year,month,day);
+
+        mDatePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mDatePickerDialog.show();
+    }
+
     void SaveFreeWeight(){
 
-        if (edtDate.getText().toString().isEmpty() || edtDate.getText().toString().matches(" +")
+        if (edtDate.getText().toString().equals("Click to add date") || edtDate.getText().toString().isEmpty() || edtDate.getText().toString().matches(" +")
         || edtPounds.getText().toString().isEmpty() || edtPounds.getText().toString().matches(" +")
         || edtRepetitions.getText().toString().isEmpty() || edtRepetitions.getText().toString().matches(" +")){
             Toast.makeText(this.getContext(), "Invalid input!", Toast.LENGTH_SHORT).show();
@@ -75,7 +111,10 @@ public class editFreeWeightFragment extends Fragment {
     }
 
     void DeleteFreeWeight(){
+
         mExerciseViewModel.delete(currFreeWeight);
+        Toast.makeText(this.getContext(),"Deleted a free weight", Toast.LENGTH_SHORT).show();
+        BackFreeWeight();
     }
 
     void BackFreeWeight(){
