@@ -63,12 +63,20 @@ public class addFreeWeightFragment extends Fragment {
     }
 
     void AddFreeWeight(){
-        String date = edtDate.getText().toString();
-        int repetitions = Integer.parseInt(edtRepetitions.getText().toString());
-        int pounds = Integer.parseInt(edtPounds.getText().toString());
-        mExerciseViewModel.insert(new FreeWeight(date,repetitions,pounds));
+        if(edtDate.getText().toString().isEmpty() || edtDate.getText().toString().matches(" +")
+        || edtPounds.getText().toString().isEmpty() || edtPounds.getText().toString().matches(" +")
+        || edtRepetitions.getText().toString().isEmpty() || edtRepetitions.getText().toString().matches(" +")){
+            Toast.makeText(this.getContext(), "Invalid input", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            String date = edtDate.getText().toString();
+            int repetitions = Integer.parseInt(edtRepetitions.getText().toString());
+            int pounds = Integer.parseInt(edtPounds.getText().toString());
+            mExerciseViewModel.insert(new FreeWeight(date,repetitions,pounds));
 
-        Toast.makeText(this.getContext(), "Free weight exercise added!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getContext(), "Free weight exercise added!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     void GoBack(){

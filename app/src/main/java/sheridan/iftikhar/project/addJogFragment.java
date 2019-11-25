@@ -67,11 +67,18 @@ public class addJogFragment extends Fragment {
     }
 
     void AddJog(){
-        String date = mEditDate.getText().toString();
-        int duration = Integer.parseInt(mEditDuration.getText().toString());
-        int intensity = Integer.parseInt(mEditIntensity.getText().toString());
-        mExerciseViewModel.insert(new Jog(date,duration,intensity));
+        if(mEditDate.getText().toString().isEmpty() || mEditDate.getText().toString().matches(" +")
+        || mEditIntensity.getText().toString().isEmpty() || mEditIntensity.getText().toString().matches(" +")
+        || mEditDuration.getText().toString().isEmpty() || mEditDuration.getText().toString().matches(" +")){
+            Toast.makeText(this.getContext(), "Invalid input", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            String date = mEditDate.getText().toString();
+            int duration = Integer.parseInt(mEditDuration.getText().toString());
+            int intensity = Integer.parseInt(mEditIntensity.getText().toString());
+            mExerciseViewModel.insert(new Jog(date,duration,intensity));
 
-        Toast.makeText(this.getContext(), "Jog Added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getContext(), "Jog Added", Toast.LENGTH_SHORT).show();
+        }
     }
 }

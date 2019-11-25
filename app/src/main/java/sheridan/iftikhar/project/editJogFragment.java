@@ -83,14 +83,23 @@ public class editJogFragment extends Fragment {
     }
     private void SaveJog() {
         //ExerciseViewModel exerciseViewModel = new ExerciseViewModel(getActivity().getApplication());
-        mEditDuration.setText(mEditDuration.getText().toString().replaceAll(",", ""));
-        currJog.setJogDate(mEditDate.getText().toString());
-        currJog.setJogDuration(Integer.parseInt(mEditDuration.getText().toString()));
-        currJog.setJogIntensity(Integer.parseInt(mEditIntensity.getText().toString()));
+        if(mEditDuration.getText().toString().isEmpty() || mEditDuration.getText().toString().matches(" +")
+        || mEditIntensity.getText().toString().isEmpty() || mEditIntensity.getText().toString().matches( " +")
+        || mEditDate.getText().toString().isEmpty() || mEditDate.getText().toString().matches(" +")){
+            Toast.makeText(this.getContext(), "Invalid input!", Toast.LENGTH_SHORT).show();
 
-        exerciseViewModel.update(currJog); //
+        }
+        else{
+            mEditDuration.setText(mEditDuration.getText().toString().replaceAll(",", ""));
+            currJog.setJogDate(mEditDate.getText().toString());
+            currJog.setJogDuration(Integer.parseInt(mEditDuration.getText().toString()));
+            currJog.setJogIntensity(Integer.parseInt(mEditIntensity.getText().toString()));
 
-        Toast.makeText(this.getContext(), "Changes saved!", Toast.LENGTH_SHORT).show();
+            exerciseViewModel.update(currJog); //
+
+            Toast.makeText(this.getContext(), "Changes saved!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void DeleteJog(){

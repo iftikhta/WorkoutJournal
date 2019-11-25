@@ -59,11 +59,19 @@ public class editFreeWeightFragment extends Fragment {
     }
 
     void SaveFreeWeight(){
-        currFreeWeight.setFreeWeightDate(edtDate.getText().toString());
-        currFreeWeight.setFreeWeightPounds(Integer.parseInt(edtPounds.getText().toString()));
-        currFreeWeight.setFreeWeightRepitions(Integer.parseInt(edtRepetitions.getText().toString()));
-        mExerciseViewModel.update(currFreeWeight);
-        Toast.makeText(this.getContext(), "Free weight updated!", Toast.LENGTH_SHORT).show();
+
+        if (edtDate.getText().toString().isEmpty() || edtDate.getText().toString().matches(" +")
+        || edtPounds.getText().toString().isEmpty() || edtPounds.getText().toString().matches(" +")
+        || edtRepetitions.getText().toString().isEmpty() || edtRepetitions.getText().toString().matches(" +")){
+            Toast.makeText(this.getContext(), "Invalid input!", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            currFreeWeight.setFreeWeightDate(edtDate.getText().toString());
+            currFreeWeight.setFreeWeightPounds(Integer.parseInt(edtPounds.getText().toString()));
+            currFreeWeight.setFreeWeightRepitions(Integer.parseInt(edtRepetitions.getText().toString()));
+            mExerciseViewModel.update(currFreeWeight);
+            Toast.makeText(this.getContext(), "Free weight updated!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     void DeleteFreeWeight(){
