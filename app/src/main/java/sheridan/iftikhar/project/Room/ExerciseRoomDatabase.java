@@ -44,30 +44,22 @@ public abstract class ExerciseRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 JogDao dao = INSTANCE.jogDao();
                 dao.deleteAll();
-                Jog jog = new Jog("September first", 5,2);
+                Jog jog = new Jog("2019/12/6", 5,2);
                 dao.insert(jog);
-                jog = new Jog("October", 2,1);
+                jog = new Jog("2019/12/7", 2,1);
                 dao.insert(jog);
-                jog = new Jog("October", 2,1);
+                jog = new Jog("2019/12/8", 2,1);
                 dao.insert(jog);
-                jog = new Jog("October", 2,1);
-                dao.insert(jog);
-                jog = new Jog("October", 2,1);
-                dao.insert(jog);
-                jog = new Jog("October", 2,1);
-                dao.insert(jog);
+
                 FreeWeightDao fdao = INSTANCE.freeWeightDao();
                 fdao.deleteAll();
-                FreeWeight freeWeight = new FreeWeight("Janruary", 30,15);
+                FreeWeight freeWeight = new FreeWeight("2019/12/8", 30,15);
                 fdao.insert(freeWeight);
-                freeWeight = new FreeWeight("February 3rd", 25, 10);
+                freeWeight = new FreeWeight("2019/12/9", 25, 10);
                 fdao.insert(freeWeight);
-                freeWeight = new FreeWeight("February 3rd", 25, 10);
+                freeWeight = new FreeWeight("2019/12/10", 25, 10);
                 fdao.insert(freeWeight);
-                freeWeight = new FreeWeight("February 3rd", 25, 10);
-                fdao.insert(freeWeight);
-                freeWeight = new FreeWeight("February 3rd", 25, 10);
-                fdao.insert(freeWeight);
+
             });
         }
     };
